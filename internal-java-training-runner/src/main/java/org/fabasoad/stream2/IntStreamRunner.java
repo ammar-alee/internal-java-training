@@ -1,6 +1,6 @@
 package org.fabasoad.stream2;
 
-import org.efabizhevsky.Person;
+import org.fabasoad.Person;
 
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;

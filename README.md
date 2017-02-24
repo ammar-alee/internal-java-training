@@ -8,7 +8,7 @@
     
     1.3. Optional
     
-    1.4. Collectors
+    1.4. Collectors *[Done]*
     
     1.5. Default methods *[Done]*
 2. Generics *[Done]*
