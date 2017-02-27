@@ -1,0 +1,17 @@
+package org.fabasoad.annotations2;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * @author Yevhen Fabizhevskyi
+ * @date 27.02.2017.
+ */
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface StatisticsClass {
+
+    String getInstanceMethod() default "getInstance";
+}
