@@ -13,5 +13,5 @@
     1.5. Default methods *[Done]*
 2. Generics *[Done]*
 3. Application structure *[Done]*
-4. Annotations
-5. Exceptions
+4. Annotations + Reflection (partially) *[Done]*
+5. Exceptions *[Done]*
