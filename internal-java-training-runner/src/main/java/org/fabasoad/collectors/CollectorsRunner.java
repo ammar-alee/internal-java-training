@@ -3,6 +3,7 @@ package org.fabasoad.collectors;
 import org.fabasoad.Person;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -44,16 +45,16 @@ public class CollectorsRunner {
         System.out.println(size);
     }
 
-    private static void groupingByExample() {
+    private static void groupingByExample2() {
         Map<String, List<Person>> result =
                 Arrays.stream(persons).collect(Collectors.groupingBy(Person::getSurname));
-        result.forEach((surname, persons) -> System.out.printf("%s: %d\n", surname, persons.size()));
+//        result.forEach((surname, persons) -> System.out.printf("%s: %d\n", surname, persons.size()));
 
         Map<String, LinkedList<Person>> result2 = Arrays.stream(persons).collect(Collectors.groupingBy(
                 Person::getSurname,
                 Collectors.toCollection(LinkedList::new)
         ));
-        result2.forEach((surname, persons) -> System.out.printf("%s: %d\n", surname, persons.size()));
+//        result2.forEach((surname, persons) -> System.out.printf("%s: %d\n", surname, persons.size()));
 
         LinkedHashMap<String, LinkedList<Person>> result3 = Arrays.stream(persons)
                 .collect(Collectors.groupingBy(
@@ -63,6 +64,29 @@ public class CollectorsRunner {
                 ));
 
         result3.forEach((surname, persons) -> System.out.printf("%s: %d\n", surname, persons.size()));
+    }
+
+    private static void groupingByExample() {
+        LinkedHashMap<String, Map<String, List<Person>>> result3 = Arrays.stream(persons)
+                .collect(Collectors.groupingBy(
+                        Person::getSurname,
+                        LinkedHashMap::new,
+                        Collectors.groupingBy(Person::getName)
+                ));
+        print(result3, "");
+    }
+
+    private static void print(Map map, String prefix) {
+        for (Object key : map.keySet()) {
+            System.out.println(prefix + key);
+            if (map.get(key) instanceof Map) {
+                print((Map) map.get(key), prefix + " ");
+            } else if (map.get(key) instanceof Collection) {
+                for (Object v : (Collection) map.get(key)) {
+                    System.out.println(prefix + " " + ((Person) v).getName() + " " + ((Person) v).getSurname());
+                }
+            }
+        }
     }
 
     private static void joiningExample() {
@@ -153,7 +177,7 @@ public class CollectorsRunner {
     }
 
     public static void main(String[] args) {
-        partitioningByExample();
+        groupingByExample();
         // comment:
         // \u000d System.out.println("hello");
     }

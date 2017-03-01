@@ -6,7 +6,7 @@
 
     1.2. Stream API *[Done]*
     
-    1.3. Optional
+    1.3. Optional *[Done]*
     
     1.4. Collectors *[Done]*
     
